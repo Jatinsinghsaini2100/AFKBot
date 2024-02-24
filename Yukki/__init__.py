@@ -1,3 +1,12 @@
+#
+# Copyright (C) 2021-2022 by TeamYukki@Github, < https://github.com/TeamYukki >.
+#
+# This file is part of < https://github.com/TeamYukki/YukkiAFKBot > project,
+# and is released under the "GNU v3.0 License Agreement".
+# Please see < https://github.com/TeamYukki/YukkiAFKBot/blob/master/LICENSE >
+#
+# All rights reserved.
+
 import asyncio
 import time
 
@@ -12,11 +21,12 @@ boot = time.time()
 mongo = MongoClient(config.MONGO_DB_URI)
 db = mongo.AFK
 
-bot_id = 0
-bot_name = ""
-bot_username = ""
+botid = 0
+botname = ""
+botusername = ""
 
-clean_mode = {}
+cleanmode = {}
+
 
 SUDOERS = config.SUDO_USER
 
@@ -27,18 +37,17 @@ app = Client(
     bot_token=config.BOT_TOKEN,
 )
 
+
 async def initiate_bot():
-    global bot_id, bot_name, bot_username
-    try:
-        await app.start()
-        get_me = await app.get_me()
-        bot_id = get_me.id
-        bot_username = get_me.username.lower()
-        if get_me.last_name:
-            bot_name = f"{get_me.first_name} {get_me.last_name}"
-        else:
-            bot_name = get_me.first_name
-    except Exception as e:
-        print(f"Error occurred during bot initialization: {e}")
+    global botid, botname, botusername
+    await app.start()
+    getme = await app.get_me()
+    botid = getme.id
+    botusername = (getme.username).lower()
+    if getme.last_name:
+        botname = getme.first_name + " " + getme.last_name
+    else:
+        botname = getme.first_name
+
 
 loop.run_until_complete(initiate_bot())
