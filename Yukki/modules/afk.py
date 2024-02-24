@@ -190,7 +190,7 @@ from Yukki.database import add_afk, is_afk, remove_afk
 from Yukki.helpers import get_readable_time, put_cleanmode
 
 
-@app.on_message(filters.command(["afk", f"afk@{botusername}"]) & ~filters.edited)
+@app.on_message(filters.command(["afk", f"afk@{botusername}"]) & ~filters.forwarded)
 async def active_afk(_, message: Message):
     if message.sender_chat:
         return
