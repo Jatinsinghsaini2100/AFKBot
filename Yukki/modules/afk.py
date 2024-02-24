@@ -169,7 +169,8 @@ async def active_afk(_, message: Message):
                 "type": "photo",
                 "time": time.time(),
                 "data": None,
-                "r#
+                "reason": None,
+            }
 # Copyright (C) 2021-2022 by TeamYukki@Github, < https://github.com/TeamYukki >.
 #
 # This file is part of < https://github.com/TeamYukki/YukkiAFKBot > project,
